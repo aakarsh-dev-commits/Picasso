@@ -1,30 +1,51 @@
 const grid = document.querySelector(".container");
-
+grid.style.height = "500px";
+grid.style.height = "500px";
 grid.style.display = "flex";
 grid.style.flexDirection = "row";
+
+const slider = document.getElementById("myRange");
+const output = document.getElementById("demo");
+
+let sliderVal = slider.value;
+output.textContent = slider.value;
+
+slider.oninput = function () {
+  output.textContent = this.value;
+  sliderVal = this.value;
+  grid.innerHTML = "";
+  squares.length = 0;
+  squareContainers.length = 0;
+  updateGrid();
+};
 
 const squareContainers = [];
 const squares = [];
 
-for (let i = 0; i < 16; i++) {
-  const sqaureContainer = document.createElement("div");
-  grid.appendChild(sqaureContainer);
-  sqaureContainer.style.display = "flex";
-  sqaureContainer.style.flexDirection = "column";
+function updateGrid() {
+  const sqaureSize = 500 / sliderVal - 2;
+  for (let i = 0; i < sliderVal; i++) {
+    const sqaureContainer = document.createElement("div");
+    grid.appendChild(sqaureContainer);
+    sqaureContainer.style.display = "flex";
+    sqaureContainer.style.flexDirection = "column";
 
-  squareContainers.push(sqaureContainer);
+    squareContainers.push(sqaureContainer);
 
-  for (let j = 0; j < 16; j++) {
-    const sqaure = document.createElement("div");
-    sqaureContainer.appendChild(sqaure);
+    for (let j = 0; j < sliderVal; j++) {
+      const sqaure = document.createElement("div");
+      sqaureContainer.appendChild(sqaure);
 
-    sqaure.style.width = "10px";
-    sqaure.style.height = "10px";
-    sqaure.style.backgroundColor = "blue";
-    sqaure.style.borderStyle = "solid";
-    sqaure.style.borderWidth = "2px";
-    sqaure.style.borderColor = "black";
+      sqaure.style.width = `${sqaureSize}px`;
+      sqaure.style.height = `${sqaureSize}px`;
+      sqaure.style.backgroundColor = "blue";
+      sqaure.style.borderStyle = "solid";
+      sqaure.style.borderWidth = "1px";
+      sqaure.style.borderColor = "black";
 
-    squares.push(sqaure);
+      squares.push(sqaure);
+    }
   }
 }
+
+updateGrid();
