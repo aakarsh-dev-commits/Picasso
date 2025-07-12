@@ -38,6 +38,8 @@ const rainbow = document.querySelector(".Rainbow");
 const squareContainers = [];
 const squares = [];
 
+let opaque;
+
 function updateGrid() {
   const sqaureSize = 500 / sliderVal - 1;
   for (let i = 0; i < sliderVal; i++) {
@@ -63,14 +65,49 @@ function updateGrid() {
     }
   }
 
+  squares.forEach((sqaure) => {
+    let currentopacity = 0;
+
+    sqaure.addEventListener("mousedown", () => {
+      isMouseDown = true;
+      currentopacity = Math.min(currentopacity + 0.1, 1);
+      sqaure.style.backgroundColor = colorPicked;
+      sqaure.style.opacity = currentopacity;
+    });
+
+    sqaure.addEventListener("mouseup", () => {
+      isMouseDown = false;
+    });
+
+    sqaure.addEventListener("mousemove", () => {
+      if (isMouseDown) {
+        currentopacity = Math.min(currentopacity + 0.1, 1);
+        sqaure.style.backgroundColor = colorPicked;
+        sqaure.style.opacity = currentopacity;
+      }
+    });
+  });
+
   normal.addEventListener("click", () => {
     squares.forEach((sqaure) => {
-      sqaure.addEventListener("pointerdown", () => {
+      let currentopacity = 0;
+
+      sqaure.addEventListener("mousedown", () => {
+        isMouseDown = true;
+        currentopacity = Math.min(currentopacity + 0.1, 1);
         sqaure.style.backgroundColor = colorPicked;
+        sqaure.style.opacity = currentopacity;
       });
-      sqaure.addEventListener("pointermove", (event) => {
-        if (event.buttons === 1) {
+
+      sqaure.addEventListener("mouseup", () => {
+        isMouseDown = false;
+      });
+
+      sqaure.addEventListener("mousemove", () => {
+        if (isMouseDown) {
+          currentopacity = Math.min(currentopacity + 0.1, 1);
           sqaure.style.backgroundColor = colorPicked;
+          sqaure.style.opacity = currentopacity;
         }
       });
     });
@@ -85,12 +122,24 @@ function updateGrid() {
 
   grey.addEventListener("click", () => {
     squares.forEach((sqaure) => {
-      sqaure.addEventListener("pointerdown", () => {
+      let currentopacity = 0;
+
+      sqaure.addEventListener("mousedown", () => {
+        isMouseDown = true;
+        currentopacity = Math.min(currentopacity + 0.1, 1);
         sqaure.style.backgroundColor = "#BEBEBE";
+        sqaure.style.opacity = currentopacity;
       });
-      sqaure.addEventListener("pointermove", (event) => {
-        if (event.buttons === 1) {
+
+      sqaure.addEventListener("mouseup", () => {
+        isMouseDown = false;
+      });
+
+      sqaure.addEventListener("mousemove", () => {
+        if (isMouseDown) {
+          currentopacity = Math.min(currentopacity + 0.1, 1);
           sqaure.style.backgroundColor = "#BEBEBE";
+          sqaure.style.opacity = currentopacity;
         }
       });
     });
@@ -98,12 +147,20 @@ function updateGrid() {
 
   rainbow.addEventListener("click", () => {
     squares.forEach((sqaure) => {
-      sqaure.addEventListener("pointerdown", () => {
+      sqaure.addEventListener("mousedown", () => {
+        isMouseDown = true;
         sqaure.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`;
+        sqaure.style.opacity = 1;
       });
-      sqaure.addEventListener("pointermove", (event) => {
-        if (event.buttons === 1) {
+
+      sqaure.addEventListener("mouseup", () => {
+        isMouseDown = false;
+      });
+
+      sqaure.addEventListener("mousemove", () => {
+        if (isMouseDown) {
           sqaure.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`;
+          sqaure.style.opacity = 1;
         }
       });
     });
