@@ -19,6 +19,16 @@ slider.oninput = function () {
   updateGrid();
 };
 
+const color = document.getElementById("colorpicker");
+let colorPicked = color.value;
+color.oninput = function () {
+  colorPicked = this.value;
+  grid.innerHTML = "";
+  squares.length = 0;
+  squareContainers.length = 0;
+  updateGrid();
+};
+
 const squareContainers = [];
 const squares = [];
 
@@ -38,7 +48,7 @@ function updateGrid() {
 
       sqaure.style.width = `${sqaureSize}px`;
       sqaure.style.height = `${sqaureSize}px`;
-      sqaure.style.backgroundColor = "blue";
+      sqaure.style.backgroundColor = colorPicked;
       sqaure.style.borderStyle = "solid";
       sqaure.style.borderWidth = "1px";
       sqaure.style.borderColor = "black";
