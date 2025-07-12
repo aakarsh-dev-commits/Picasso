@@ -26,9 +26,14 @@ color.oninput = function () {
   colorPicked = this.value;
 };
 
+function randomColor() {
+  return Math.floor(Math.random() * 256);
+}
+
 const normal = document.querySelector(".Normal");
 const clear = document.querySelector(".Clear");
 const grey = document.querySelector(".GrayScale");
+const rainbow = document.querySelector(".Rainbow");
 
 const squareContainers = [];
 const squares = [];
@@ -86,6 +91,19 @@ function updateGrid() {
       sqaure.addEventListener("pointermove", (event) => {
         if (event.buttons === 1) {
           sqaure.style.backgroundColor = "#BEBEBE";
+        }
+      });
+    });
+  });
+
+  rainbow.addEventListener("click", () => {
+    squares.forEach((sqaure) => {
+      sqaure.addEventListener("pointerdown", () => {
+        sqaure.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`;
+      });
+      sqaure.addEventListener("pointermove", (event) => {
+        if (event.buttons === 1) {
+          sqaure.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`;
         }
       });
     });
