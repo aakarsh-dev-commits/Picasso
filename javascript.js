@@ -28,6 +28,7 @@ color.oninput = function () {
 
 const normal = document.querySelector(".Normal");
 const clear = document.querySelector(".Clear");
+const grey = document.querySelector(".GrayScale");
 
 const squareContainers = [];
 const squares = [];
@@ -75,6 +76,19 @@ function updateGrid() {
     squares.length = 0;
     squareContainers.length = 0;
     updateGrid();
+  });
+
+  grey.addEventListener("click", () => {
+    squares.forEach((sqaure) => {
+      sqaure.addEventListener("pointerdown", () => {
+        sqaure.style.backgroundColor = "#BEBEBE";
+      });
+      sqaure.addEventListener("pointermove", (event) => {
+        if (event.buttons === 1) {
+          sqaure.style.backgroundColor = "#BEBEBE";
+        }
+      });
+    });
   });
 }
 
