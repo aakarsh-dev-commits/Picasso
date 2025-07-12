@@ -11,7 +11,7 @@ let sliderVal = slider.value;
 output.textContent = `${slider.value} X ${slider.value} `;
 
 slider.oninput = function () {
-  output.textContent = this.value;
+  output.textContent = `${slider.value} X ${slider.value} `;
   sliderVal = this.value;
   grid.innerHTML = "";
   squares.length = 0;
@@ -54,10 +54,10 @@ function updateGrid() {
 
       sqaure.style.width = `${sqaureSize}px`;
       sqaure.style.height = `${sqaureSize}px`;
-      sqaure.style.backgroundColor = "#ffffff";
+      sqaure.style.backgroundColor = "#041729";
       sqaure.style.borderStyle = "solid";
       sqaure.style.borderWidth = "0.5px";
-      sqaure.style.borderColor = "black";
+      sqaure.style.borderColor = "white";
 
       squares.push(sqaure);
     }
