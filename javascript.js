@@ -8,7 +8,7 @@ const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
 
 let sliderVal = slider.value;
-output.textContent = slider.value;
+output.textContent = `${slider.value} X ${slider.value} `;
 
 slider.oninput = function () {
   output.textContent = this.value;
